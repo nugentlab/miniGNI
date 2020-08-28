@@ -112,8 +112,8 @@ ssaDF.sort_values('id_number', inplace=True)
 # =================================================================================================
 
 # cut VOCALS data to under 650 m
-vocalsDF = vocalsDF[vocalsDF.altitude<=650]
-vocalsDF.reset_index(inplace=True, drop=True)
+#vocalsDF = vocalsDF[vocalsDF.altitude<=650]
+#vocalsDF.reset_index(inplace=True, drop=True)
 
 # add buoy, tide, and wind data
 ssaDF = rdr.add_wave_data(ssaDF, buoy_dir = buoy_dir)
@@ -123,10 +123,10 @@ ssaDF = rdr.add_wind_data(ssaDF, wind_dir = wind_dir)
 # remove low CE data and add cutoff data
 ssaDF = rdr.remove_low_ce(ssaDF)
 ssaDF = rdr.add_cutoff_conc(ssaDF, cutoff=3.9)
-vocalsDF = rdr.remove_low_ce(vocalsDF)
-vocalsDF = rdr.add_cutoff_conc(vocalsDF, cutoff=3.9)
-vocalsDF = vocalsDF[vocalsDF.cutoff_total_conc > 150]
-vocalsDF.reset_index(inplace=True, drop=True)
+#vocalsDF = rdr.remove_low_ce(vocalsDF)
+#vocalsDF = rdr.add_cutoff_conc(vocalsDF, cutoff=3.9)
+#vocalsDF = vocalsDF[vocalsDF.cutoff_total_conc > 150]
+#vocalsDF.reset_index(inplace=True, drop=True)
 
 # add wind sensitivity data
 ssaDF = rdr.add_wind_sensitivity(ssaDF, fractional_change=0.35)
@@ -138,12 +138,12 @@ ssaDF = rdr.add_low_wind_cutoff_conc(ssaDF, cutoff=4.9)
 
 # add lognormal fit data
 ssaDF = rdr.fit_lognormal(ssaDF)
-vocalsDF = rdr.fit_lognormal(vocalsDF)
+#vocalsDF = rdr.fit_lognormal(vocalsDF)
 #synthDF = rdr.fit_synth_lognormal(synthDF)
 
 # save the data frame to CSV
 ssaDF.to_csv(data_dir + '/ssaDF.csv', index=False)
-vocalsDF.to_csv(data_dir + '/vocalsDF.csv', index=False)
+#vocalsDF.to_csv(data_dir + '/vocalsDF.csv', index=False)
 #synthDF.to_csv(data_dir + '/synthDF.csv', index=False)
 
 # NOTE: ssaDF.csv must be altered manually to include surface wind speed!!!

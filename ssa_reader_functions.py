@@ -123,6 +123,21 @@ def retrieve_info(data_directory, file_name):
                         # it is multiplied by 1000000 to convert from meters to micrometers
                         rv_radius = 1000000*float(match_RV.group(1) + '.' + match_RV.group(2))
                         rv_list.append(rv_radius)
+                # Some data files only give up to 19.4 um (middle bin) instead of 19.8 um. This
+                # # is problematic because we want the data files to be consistent for analysis
+                # # purposes. Therefore, lower_bin, middle_bin, upper_bin, and concentration
+                # # are extended to 19.8 um (concentration set to 0 for the extended values).
+                if max(mid_bin_vector) < 19.8:
+                    bin_num_vector.append(98)
+                    bin_num_vector.append(99)
+                    lower_bin_vector.append(19.5)
+                    lower_bin_vector.append(19.7)
+                    mid_bin_vector.append(19.6)
+                    mid_bin_vector.append(19.8)
+                    upper_bin_vector.append(19.7)
+                    upper_bin_vector.append(19.9)
+                    conc_vector.append(0.0)
+                    conc_vector.append(0.0)
                 # This calculates the salt mass in ug from the radius using (4/3)pi*r^3.
                 # # The total salt mass for each bin is calculcated, and then the total salt mass
                 # # for the entire sample is calculcated. The radius used is the midpoint of each 

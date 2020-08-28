@@ -128,6 +128,31 @@ w_22_12 = process_woodcock_data(woodcock_22_12)
 # =================================================================================================
 # =================================================================================================
 # =================================================================================================
+# Publication Plots
+if False:
+    # Figure 4
+    spf.plot_ranz_wong(plot_resolution=50, max_radius=15, max_wind_speed=15)
+    spf.plot_ranz_wong(plot_resolution=100, max_radius=5, max_wind_speed=5)
+    # Figure 5
+    spf.plot_size_distribution(df=vocalsData, id_num='081018a3')
+    spf.plot_size_distribution(df=ssaData, id_num='190731a1')
+    # Figure 6
+    spf.plot_lognormal_stats(df=ssaData, df2=vocalsData)
+    # Figure 7
+    spf.plot_cumulative_concentration_average(df=ssaData, color_variable='altitude', cutoff_list=[10, 25, 55, 125, 200, 300, 400, 500, 700], color_label='Altitude (m)')
+    spf.plot_total_concentration(df=ssaData, y_variable='cutoff_total_conc', x_variable='altitude', color_variable='surface_wind', size_variable='wave_height', x_label='Altitude (m)', color_label='Surface Wind Speed (m $\mathrm{s^{-1}}$)', size_label='Significant Wave Height (m)')
+    # Figure 8
+    spf.plot_compare_woodcock_average(df=ssaData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[3.0,3.5,4.0,4.5,5.0,5.5,6.0], y_variable = 'cutoff_cumu_conc')
+    spf.plot_total_concentration(df=ssaData, y_variable='cutoff_total_conc', x_variable='surface_wind', color_variable='altitude', size_variable='wave_height', x_label='Surface Wind Speed (m $\mathrm{s^{-1}}$)', color_label='Altitude (m)', size_label='Significant Wave Height (m)')
+    spf.plot_total_concentration(df=ssaData, y_variable='cutoff_total_conc', x_variable='phng_wind12hr', color_variable='altitude', size_variable='wave_height', x_label='Kaneohe 12hr Mean 10m Wind (m $\mathrm{s^{-1}}$)', color_label='Altitude (m)', size_label='Significant Wave Height (m)')
+    # Figure 9
+    spf.plot_wind_sensitivity(df=ssaData, id_num='190413a5')
+    # Figure 11
+    spf.plot_cumulative_concentration_average(df=ssaData, color_variable='wave_height', cutoff_list=[1.2, 1.5, 2.0, 2.6, 3.7], color_label='Wave Height (m)')
+    spf.plot_total_concentration(df=ssaData, y_variable='cutoff_total_conc', x_variable='wave_height', color_variable='altitude', size_variable='surface_wind', x_label='Significant Wave Height (m)', color_label='Altitude (m)', size_label='Surface Wind Speed (m $\mathrm{s^{-1}}$)')
+
+
+
 
 # =================================================================================================
 # PLOT ALL SAMPLES OVER TIME BY ALTITUDE ==========================================================
@@ -144,9 +169,9 @@ if False:
 # PLOT CUMULATIVE CONCENTRATION ===================================================================
 # =================================================================================================
 
-spf.plot_compare_woodcock_average(df=vocalsData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[0.6,2.0,4.0,6.0,8.0,10.0,12.0,17.5], y_variable = 'cumu_conc')
+#spf.plot_compare_woodcock_average(df=vocalsData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[0.6,2.0,4.0,6.0,8.0,10.0,12.0,17.5], y_variable = 'cumu_conc')
 #spf.plot_cumulative_concentration_average(df=ssaData, color_variable='wave_height', cutoff_list=[1.2, 1.5, 2.0, 2.6, 3.7], color_label='Wave Height (m)')
-spf.plot_compare_woodcock_average(df=ssaData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[3.0,3.5,4.0,4.5,5.0,5.5,6.0], y_variable = 'cutoff_cumu_conc')
+#spf.plot_compare_woodcock_average(df=ssaData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[3.0,3.5,4.0,4.5,5.0,5.5,6.0], y_variable = 'cutoff_cumu_conc')
 
 if False:
     spf.plot_cumulative_concentration(df=ssaData, color_variable='surface_wind', color_label='Surface Wind Speed (m $s^{-1}$)')
@@ -156,6 +181,7 @@ if False:
     spf.plot_cumulative_concentration_average(df=ssaData, color_variable='wave_height', cutoff_list=[1.2, 1.5, 2.0, 2.6, 3.7], color_label='Wave Height (m)')
     spf.plot_compare_woodcock(df=ssaData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12)
     spf.plot_compare_woodcock_average(df=ssaData, wdf1=w_49_1, wdf2=w_42_3, wdf3=w_39_5, wdf4=w_35_7, wdf5=w_22_12, cutoff_winds=[3.0,3.5,4.0,4.5,5.0,5.5,6.0], y_variable = 'cutoff_cumu_conc')
+    spf.plot_total_concentration(df=ssaData, y_variable=y_variable, x_variable='phng_wind12hr', color_variable='altitude', size_variable='wave_height', x_label='Kaneohe 12hr Mean 10m Wind (m $\mathrm{s^{-1}}$)', color_label='Altitude (m)', size_label='Significant Wave Height (m)')
 
 
 # =================================================================================================
@@ -171,8 +197,8 @@ if False:
 # PLOT LOGNORMAL STATS HISTOGRAMS =================================================================
 # =================================================================================================
 if False:
-    #spf.plot_lognormal_comparison(df=vocalsData)
     spf.plot_lognormal_stats(df=ssaData, df2=vocalsData)
+    #spf.plot_lognormal_comparison(df=vocalsData)
 
 # =================================================================================================
 # CORRELATION PLOTS ===============================================================================
@@ -260,8 +286,6 @@ if False:
 # =================================================================================================
 # SIZE DISTRIBUTION HISTOGRAMS WITH LOGNORMAL FITS=================================================
 # =================================================================================================
-#spf.plot_size_distribution(df=vocalsData, id_num='081018a3')
-#spf.plot_size_distribution(df=ssaData, id_num='190731a1')
 
 if False:
     spf.plot_size_distribution(df=ssaData, id_num='181205a1')

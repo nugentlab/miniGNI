@@ -17,6 +17,7 @@ import math
 import matplotlib.colors
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
+import matplotlib.tri as tri
 import numpy as np
 import os
 import pandas as pd
@@ -26,6 +27,8 @@ from matplotlib.dates import DateFormatter
 from scipy import stats
 from scipy.optimize import curve_fit
 from lmfit.models import ExpressionModel
+
+import ranzwong as rw
 
 # define directories
 miniGNI_dir = 'C:/Users/ntril/Dropbox/mini-GNI'
@@ -118,9 +121,8 @@ def plot_all_samples(df, color_variable, color_label):
     plt.xlabel('Date (Month/Day/Year)')
     cb.set_label(color_label)
     plt.tight_layout() # tight layout
-    plt.savefig(plot_dir + '/all_samples/samples_altitude_' + color_variable + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/all_samples/eps/samples_altitude_' + color_variable + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/all_samples/png/samples_altitude_' + color_variable + '.png', format='png')
+    plt.savefig(plot_dir + '/all_samples/samples_altitude_' + color_variable + '.eps', format='eps')
+    plt.savefig(plot_dir + '/all_samples/samples_altitude_' + color_variable + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -157,9 +159,8 @@ def plot_compare_woodcock(df, wdf1, wdf2, wdf3, wdf4, wdf5):
     cb = plt.colorbar(plt.cm.ScalarMappable(cmap=cmap, norm=norm))
     cb.set_label('Wind Speed (m $\mathrm{s^{-1}}$)')
     plt.tight_layout()
-    plt.savefig(plot_dir + '/cumulative_concentration/woodcock_comparison.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/cumulative_concentration/eps/woodcock_comparison.eps', format='eps')
-    #plt.savefig(plot_dir + '/cumulative_concentration/png/woodcock_comparison.png', format='png')
+    plt.savefig(plot_dir + '/cumulative_concentration/woodcock_comparison.eps', format='eps')
+    plt.savefig(plot_dir + '/cumulative_concentration/woodcock_comparison.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -216,9 +217,8 @@ def plot_compare_woodcock_average(df, wdf1, wdf2, wdf3, wdf4, wdf5, cutoff_winds
     #cb.set_label(color_label) # colorbar label
     plt.tight_layout()
     #plt.show()
-    plt.savefig(plot_dir + '/cumulative_concentration/' + y_variable + '_mean_woodcock_comparison.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/cumulative_concentration/eps/mean_cumulative_concentration_by_phngwind.eps', format='eps')
-    #plt.savefig(plot_dir + '/cumulative_concentration/png/mean_cumulative_concentration_by_phngwind.png', format='png')
+    plt.savefig(plot_dir + '/cumulative_concentration/mean_cumulative_concentration_by_phngwind.eps', format='eps')
+    plt.savefig(plot_dir + '/cumulative_concentration/mean_cumulative_concentration_by_phngwind.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -255,9 +255,8 @@ def plot_correlation(df, x_variable, y_variable, x_label, y_label):
     plt.ylabel(y_label) # label y-axis
     plt.grid() # give the plot a grid
     plt.tight_layout()
-    plt.savefig(plot_dir + '/correlation/' + x_variable + '_correlation_' + y_variable + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/correlation/eps/' + x_variable + '_correlation_' + y_variable + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/correlation/png/' + x_variable + '_correlation_' + y_variable + '.png', format='png')
+    plt.savefig(plot_dir + '/correlation/' + x_variable + '_correlation_' + y_variable + '.eps', format='eps')
+    plt.savefig(plot_dir + '/correlation/' + x_variable + '_correlation_' + y_variable + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -291,9 +290,8 @@ def plot_cumulative_concentration(df, color_variable, color_label):
     cb = plt.colorbar(plt.cm.ScalarMappable(cmap=cmap, norm=norm)) # create colorbar
     cb.set_label(color_label) # colorbar label
     plt.tight_layout()
-    plt.savefig(plot_dir + '/cumulative_concentration/cumulative_concentration_by_' + color_variable + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/cumulative_concentration/eps/cumulative_concentration_by_' + color_variable + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/cumulative_concentration/png/cumulative_concentration_by_' + color_variable + '.png', format='png')
+    plt.savefig(plot_dir + '/cumulative_concentration/cumulative_concentration_by_' + color_variable + '.eps', format='eps')
+    plt.savefig(plot_dir + '/cumulative_concentration/cumulative_concentration_by_' + color_variable + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -360,9 +358,8 @@ def plot_cumulative_concentration_average(df, color_variable, cutoff_list, color
     lgd = plt.legend(bbox_to_anchor=(1.0,1.0), loc='upper left', ncol=1, fontsize=24, title = color_label + ', Sample Size')
     plt.tight_layout()
     #plt.show()
-    plt.savefig(plot_dir + '/cumulative_concentration/mean_cumulative_concentration_by_' + color_variable + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/cumulative_concentration/eps/mean_cumulative_concentration_by_altitude.eps', format='eps')
-    #plt.savefig(plot_dir + '/cumulative_concentration/png/mean_cumulative_concentration_by_altitude.png', format='png')
+    plt.savefig(plot_dir + '/cumulative_concentration/mean_cumulative_concentration_by_altitude.eps', format='eps')
+    #plt.savefig(plot_dir + '/cumulative_concentration/mean_cumulative_concentration_by_altitude.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -396,9 +393,8 @@ def plot_lognormal_stats(df, df2):
     plt.xlabel('$r_g$ (\u03BCm)') # label the x-axis
     plt.tight_layout()
     plt.legend()
-    plt.savefig(plot_dir + '/lognormal_stats/mu_distribution.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/mu_distribution.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/mu_distribution.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/mu_distribution.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/mu_distribution.png', format='png')
     plt.close('all') # closes plots to create the next one
     # sigma histogram
     bins_list = np.linspace(1,6,26)
@@ -408,9 +404,8 @@ def plot_lognormal_stats(df, df2):
     plt.xlabel('$\u03C3_g$ (\u03BCm)')
     plt.tight_layout()
     plt.legend()
-    plt.savefig(plot_dir + '/lognormal_stats/sigma_distribution.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/sigma_distribution.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/sigma_distribution.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/sigma_distribution.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/sigma_distribution.png', format='png')
     plt.close('all')
     # salt mass histogram
     bins_list = np.linspace(0,20.0,26)
@@ -420,9 +415,8 @@ def plot_lognormal_stats(df, df2):
     plt.xlabel('Salt Mass (\u03BCg $\mathrm{m^{-3}}$)')
     plt.tight_layout()
     plt.legend()
-    plt.savefig(plot_dir + '/lognormal_stats/mass_distribution.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/mass_distribution.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/mass_distribution.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/mass_distribution.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/mass_distribution.png', format='png')
     plt.close('all')
     # salt mass histogram
     bins_list = np.linspace(0,300,31)
@@ -432,9 +426,8 @@ def plot_lognormal_stats(df, df2):
     plt.xlabel('Reduced Chi-Square')
     plt.tight_layout()
     plt.legend()
-    plt.savefig(plot_dir + '/lognormal_stats/rchi_distribution.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/rchi_distribution.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/rchi_distribution.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/rchi_distribution.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/rchi_distribution.png', format='png')
     plt.close('all')
 
 def plot_lognormal_comparison(df):
@@ -444,9 +437,8 @@ def plot_lognormal_comparison(df):
     plt.ylabel('Jorgen')
     plt.xlabel('Aaron')
     plt.title('Geometric Mean Calculation Comparison')
-    plt.savefig(plot_dir + '/lognormal_stats/mu_comparison.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/mu_comparison.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/mu_comparison.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/mu_comparison.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/mu_comparison.png', format='png')
     plt.close('all')
     # standard deviation
     plt.scatter(x=df.sigmaG, y=df.gni_std)
@@ -456,9 +448,8 @@ def plot_lognormal_comparison(df):
     plt.xlim(left=0, right=5)
     plt.xlabel('Aaron')
     plt.title('Geometric St. Dev. Calculation Comparison')
-    plt.savefig(plot_dir + '/lognormal_stats/std_comparison.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/std_comparison.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/std_comparison.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/std_comparison.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/std_comparison.png', format='png')
     plt.close('all')
     # chi square
     plt.scatter(x=df.chi2, y=df.gni_chi)
@@ -468,9 +459,8 @@ def plot_lognormal_comparison(df):
     plt.ylim(bottom=0, top=250)
     plt.xlim(left=0, right=250)
     plt.title('Chi-Square Calculation Comparison')
-    plt.savefig(plot_dir + '/lognormal_stats/chi_comparison.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/lognormal_stats/eps/chi_comparison.eps', format='eps')
-    #plt.savefig(plot_dir + '/lognormal_stats/png/chi_comparison.png', format='png')
+    plt.savefig(plot_dir + '/lognormal_stats/chi_comparison.eps', format='eps')
+    plt.savefig(plot_dir + '/lognormal_stats/chi_comparison.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -537,9 +527,8 @@ def plot_mass_distribution_tenpercent(df):
     lgd = plt.legend(bbox_to_anchor=(1.0,1.0), loc='upper left', ncol=1, fontsize=24, title = 'Mean Sample Mass')
     plt.tight_layout()
     #plt.show()
-    plt.savefig(plot_dir + '/all_samples/mean_mass_distribution_tenpercent.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/mean_mass_distribution_tenpercent.eps', format='eps')
-    #plt.savefig(plot_dir + '/mean_mass_distribution_tenpercent.png', format='png')
+    plt.savefig(plot_dir + '/mean_mass_distribution_tenpercent.eps', format='eps')
+    plt.savefig(plot_dir + '/mean_mass_distribution_tenpercent.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -566,7 +555,7 @@ def plot_ranz_wong(plot_resolution, max_radius, max_wind_speed):
     wind_speed = air_speed_list*len(dry_radius_list)
     ce_list = []
     for x, y in zip(ssa_dry_radius, wind_speed):
-        ranzwong.append(rw.get_collision_efficiency(pressure=99053.14, temperature=297.55, air_speed=y, rh=0.7492, dry_radius=x))
+        ce_list.append(rw.get_collision_efficiency(pressure=99053.14, temperature=297.55, air_speed=y, rh=0.7492, dry_radius=x))
     # set size of plot
     plt.rcParams['figure.figsize'] = (12.0, 8.0)
     # defining x, y, z for tricontour style
@@ -588,16 +577,15 @@ def plot_ranz_wong(plot_resolution, max_radius, max_wind_speed):
     cb.set_ticks(ticks) # colorbar ticks
     cb.set_ticklabels(ticks) # colorbar tick labels
     # axis ticks
-    plt.xlim(left=1, right=maxRadius)
-    plt.ylim(bottom=1, top=maxWindSpeed)
-    plt.xticks(range(1, maxRadius+1, 1))
-    plt.yticks(range(1, maxWindSpeed+1, 1))
+    plt.xlim(left=1, right=max_radius)
+    plt.ylim(bottom=1, top=max_wind_speed)
+    plt.xticks(range(1, max_radius+1, 1))
+    plt.yticks(range(1, max_wind_speed+1, 1))
     # axes labels
     plt.ylabel('Wind Speed (m $\mathrm{s^{-1}}$)')
     plt.xlabel('Dry Radius (\u03BCm)')
-    plt.savefig('plots/collision_efficiency/ce_' + str(max_radius) + '_radius_' + str(max_wind_speed) + '_wind.pdf', format='pdf')
-    #plt.savefig('plots/collision_efficiency/png/ce_' + str(max_radius) + '_radius_' + str(max_wind_speed) + '_wind.png')
-    #plt.savefig('plots/collision_efficiency/eps/ce_' + str(max_radius) + '_radius_' + str(max_wind_speed) + '_wind.eps')
+    plt.savefig('plots/collision_efficiency/ce_' + str(max_radius) + '_radius_' + str(max_wind_speed) + '_wind.png')
+    plt.savefig('plots/collision_efficiency/ce_' + str(max_radius) + '_radius_' + str(max_wind_speed) + '_wind.eps')
 
 # =================================================================================================
 # =================================================================================================
@@ -638,9 +626,8 @@ def plot_sample_day_concentration(df, sample_date):
     # title the plot, give it a tight layout, and save it
     plt.title('Sample Date ' + sample_date)
     plt.tight_layout()
-    plt.savefig(plot_dir + '/sample_day/cumulative_by_altitude_' + sample_date + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/sample_day/eps/cumulative_by_altitude_' + sample_date + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/sample_day/png/cumulative_by_altitude_' + sample_date + '.png', format='png')
+    plt.savefig(plot_dir + '/sample_day/cumulative_by_altitude_' + sample_date + '.eps', format='eps')
+    plt.savefig(plot_dir + '/sample_day/cumulative_by_altitude_' + sample_date + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -716,9 +703,8 @@ def plot_sample_day_concentration_average(df, sample_date):
     lgd = plt.legend(bbox_to_anchor=(1.0,1.0), loc='upper left', ncol=1, fontsize=24, title = 'Altitude (m), Sample Size \n Sample Date: ' + sample_date)
     plt.tight_layout()
     #plt.show()
-    plt.savefig(plot_dir + '/sample_day/mean_cumulative_by_altitude_' + sample_date + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/sample_day/eps/mean_cumulative_by_altitude_' + sample_date + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/sample_day/png/mean_cumulative_by_altitude_' + sample_date + '.png', format='png')
+    plt.savefig(plot_dir + '/sample_day/mean_cumulative_by_altitude_' + sample_date + '.eps', format='eps')
+    plt.savefig(plot_dir + '/sample_day/mean_cumulative_by_altitude_' + sample_date + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -743,7 +729,7 @@ def plot_size_distribution(df, id_num):
     y_nonempty = np.array([count for count in y if count>0])
     # label the axes and set y-axis limit
     plt.ylabel('Number Concentration ($\mathrm{m^{-3}}$)')
-    plt.ylim(bottom=0.1, top=1000000)
+    plt.ylim(bottom=0.1, top=100000)
     # get altitude, surface wind, and buoy wave height values
     #altitude_label = df.loc[df['id_number'] == id_num, 'altitude'].values[0]
     #wind_label = df.loc[df['id_number'] == id_num, 'surface_wind'].values[0]
@@ -764,17 +750,17 @@ def plot_size_distribution(df, id_num):
     # putting the lognormal parameters in to plot the lognormal distribution
     x_lognorm, y_lognorm = x_nonempty, area*(1/(x_nonempty*sigma*math.sqrt(2*math.pi)))*np.exp((-np.power(np.log(x_nonempty)-mu, 2))/(2*np.power(sigma, 2)))
     # plotting the lognormal fit line
-    plt.plot(x_lognorm, y_lognorm, 'r-')
+    plt.plot(x_lognorm, y_lognorm, 'r-', linewidth=5)
     plt.yscale('log') # log scale for y-axis
-    plt.xlim(left=0, right=16) # limits on x-axis
+    plt.xlim(left=0, right=11) # limits on x-axis
     plt.xlabel('Bin Dry Radius (\u03BCm)') # label on x-axis
     plt.grid() # gridded plot
     plt.title('Sample ' + id_num) # title shows which sample it is
     # creating annotations for geometric mean, geometric standard deviation, chi-squared value,
     # # p-value, sample surface wind, sample buoy wave height, and sample altitude
-    plt.annotate('$\u03BC_g$ = %.3f \u03BCm'%(mu_g), xy=(10,630957), size=24, verticalalignment='center')
-    plt.annotate('$\u03C3_g$ = %.3f'%(sigma_g), xy=(10,316228), size=24, verticalalignment='center')
-    plt.annotate('Reduced $\u03A7^2$ = %.1f'%(chi2), xy=(10,158489), size=24, verticalalignment='center')
+    plt.annotate('$\u03BC_g$ = %.3f \u03BCm'%(mu_g), xy=(6,63095.7), size=24, verticalalignment='center')
+    plt.annotate('$\u03C3_g$ = %.3f'%(sigma_g), xy=(6,31622.8), size=24, verticalalignment='center')
+    plt.annotate('Reduced $\u03A7^2$ = %.1f'%(chi2), xy=(6,15848.9), size=24, verticalalignment='center')
     #plt.annotate('$p$ = %.3f'%(p), xy=(12,15000), size=24)
     #plt.annotate('Surface Wind = %.1f m $\mathrm{s^{-1}}$'%(wind_label), xy=(6, 1500), size=24)
     #plt.annotate('Significant Wave Height = %.1f m'%(wave_label), xy=(6, 3000), size=24)
@@ -782,7 +768,7 @@ def plot_size_distribution(df, id_num):
     plt.tight_layout()
     #ax.set_rasterized(True)
     plt.savefig(plot_dir + '/histogram/histogram_' + id_num + '.png', format='png')
-    #plt.savefig(plot_dir + '/histogram/png/histogram_' + id_num + '.png', format='png')
+    plt.savefig(plot_dir + '/histogram/histogram_' + id_num + '.eps', format='eps')
     plt.close('all')
 
 # =================================================================================================
@@ -846,7 +832,7 @@ def plot_synth_distribution(df, id_num):
     plt.tight_layout()
     #ax.set_rasterized(True)
     plt.savefig(plot_dir + '/histogram/synth/synth_histogram_' + id_num + '.png', format='png')
-    #plt.savefig(plot_dir + '/histogram/png/histogram_' + id_num + '.png', format='png')
+    plt.savefig(plot_dir + '/histogram/synth/synth_histogram_' + id_num + '.eps', format='eps')
     plt.close('all')
 
 # =================================================================================================
@@ -919,11 +905,11 @@ def plot_total_concentration(df, x_variable, y_variable, color_variable, size_va
     legend.get_title().set_fontsize('24') # font size of the legend
     plt.tight_layout() # tight layout for the plot
     if 'phng' in x_variable:
-        plt.savefig(plot_dir + '/total_concentration/phng/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.pdf', format='pdf')
+        plt.savefig(plot_dir + '/total_concentration/phng/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.eps', format='eps')
+        plt.savefig(plot_dir + '/total_concentration/phng/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.png', format='png')
     else:
-        plt.savefig(plot_dir + '/total_concentration/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/total_concentration/eps/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/total_concentration/png/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.png', format='png')
+        plt.savefig(plot_dir + '/total_concentration/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.eps', format='eps')
+        plt.savefig(plot_dir + '/total_concentration/' + y_variable + '_' + x_variable + '_color_' + color_variable + '_size_' + size_variable + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -973,9 +959,8 @@ def plot_wind_sensitivity(df, id_num):
     legend = plt.legend((legendBlue, legendRed), ('Unchanged Wind', 'Decreased Wind'), scatterpoints=1, loc='upper right', ncol=1, fontsize=24)
     # plot layout and saving
     plt.tight_layout()
-    plt.savefig(plot_dir + '/wind_sensitivity/sensitivity_histogram_' + id_num + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/wind_sensitivity/eps/sensitivity_histogram_' + id_num + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/wind_sensitivity/png/sensitivity_histogram_' + id_num + '.png', format='png')
+    plt.savefig(plot_dir + '/wind_sensitivity/sensitivity_histogram_' + id_num + '.eps', format='eps')
+    plt.savefig(plot_dir + '/wind_sensitivity/sensitivity_histogram_' + id_num + '.png', format='png')
     plt.close('all')
     # next plot shows the ratio between low wind concentration to observed concentration
     plt.ylabel('Ratio of Calculated Concentration to Observed')
@@ -991,9 +976,8 @@ def plot_wind_sensitivity(df, id_num):
     plt.annotate('Altitude = %.1f m'%(altitude_label), xy=(7, 4.2), size=24, verticalalignment='center')
     # plot layout and saving
     plt.tight_layout()
-    plt.savefig(plot_dir + '/wind_sensitivity/ratio/ratio_histogram_' + id_num + '.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/wind_sensitivity/eps/ratio_histogram_' + id_num + '.eps', format='eps')
-    #plt.savefig(plot_dir + '/wind_sensitivity/png/ratio_histogram_' + id_num + '.png', format='png')
+    plt.savefig(plot_dir + '/wind_sensitivity/ratio_histogram_' + id_num + '.eps', format='eps')
+    plt.savefig(plot_dir + '/wind_sensitivity/ratio_histogram_' + id_num + '.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -1040,9 +1024,8 @@ def plot_wind_vs_waves(df):
     plt.tight_layout()
     # title and saving
     #plt.title('Difference Between Wind and Wave Direction')
-    plt.savefig(plot_dir + '/wind_wave/wind_wave_direction.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/wind_wave/eps/wind_wave_direction.eps', format='eps')
-    #plt.savefig(plot_dir + '/wind_wave/png/wind_wave_direction.png', format='png')
+    plt.savefig(plot_dir + '/wind_wave/wind_wave_direction.eps', format='eps')
+    plt.savefig(plot_dir + '/wind_wave/wind_wave_direction.png', format='png')
     plt.close('all')
 
 # =================================================================================================
@@ -1065,9 +1048,9 @@ def plot_wave_orientation(df, number_bins):
     y = df.peak_dir*(np.pi/180) # converting the direction to radians
     plt.hist(y, bins) # plotting
     plt.title("All Samples Wave Direction Frequency")
-    plt.savefig(plot_dir + '/wind_wave/wave_direction_rose.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/wind_wave/eps/wave_direction_rose.eps', format='eps')
-    #plt.savefig(plot_dir + '/wind_wave/png/wave_direction_rose.png', format='png')
+    #plt.savefig(plot_dir + '/wind_wave/wave_direction_rose.pdf', format='pdf')
+    plt.savefig(plot_dir + '/wind_wave/wave_direction_rose.eps', format='eps')
+    plt.savefig(plot_dir + '/wind_wave/wave_direction_rose.png', format='png')
 
 def plot_wind_orientation(df, number_bins):
     # same thing as plot_wave_direction but now for wind direction
@@ -1081,8 +1064,7 @@ def plot_wind_orientation(df, number_bins):
     y = df.phng_wind_dir*(np.pi/180)
     plt.hist(y, bins)
     plt.title("All Samples PHNG Wind Direction Frequency")
-    plt.savefig(plot_dir + '/wind_wave/wind_direction_rose.pdf', format='pdf')
-    #plt.savefig(plot_dir + '/wind_wave/eps/wind_direction_rose.eps', format='eps')
-    #plt.savefig(plot_dir + '/wind_wave/png/wind_direction_rose.png', format='png')
+    plt.savefig(plot_dir + '/wind_wave/wind_direction_rose.eps', format='eps')
+    plt.savefig(plot_dir + '/wind_wave/wind_direction_rose.png', format='png')
 
 
