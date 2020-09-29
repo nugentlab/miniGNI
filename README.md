@@ -1,5 +1,5 @@
 # miniGNI
-<img align="left" width="175" height="175" src=".pics/Fig1a_miniGNI.png">
+<img align="left" width="175" height="175" src="https://github.com/nugentlab/pics/Fig1a_miniGNI.png">
 
 
 ## **mini-GNI** - Miniature Giant Nucleus Impactor 
