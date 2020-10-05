@@ -28,7 +28,7 @@ To download this directory from GitHub, run:
 ```
   git clone https://github.com/nugentlab/miniGNI/miniGNI_Assembly
 ```
-
+Or click the link 
 ## 2. Mini-GNI Sample Anaylsis Preperation
 
 Once the mini-GNI has been used to sample (more specific details on sampling methodology here *insert link to paper*), code needs to be run to compile environment files for use in analysis by the microscope. The miniGNI_functions.py creates functions used by the environment_file_generator.py that compile the information obtained by the miniGNI sensors along with measurements that were obtained by the acting scientist (i.e. wind speeds). These environment files are generated for each sample obtained, and rely on the manual input of wind speed.
@@ -58,3 +58,8 @@ To download only this directory from GitHub, run:
 ```
   git clone https://github.com/nugentlab/miniGNI/SSA_Plot_Codes
 ```
+
+
+#### Ranz-Wong Code Reference
+
+This folder contains original code and information used to calculate the collision efficiency developed by Ranz and Wong in 1952. 
