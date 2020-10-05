@@ -20,7 +20,7 @@ To download this repository from GitHub, run:
 To just download them individual parts and refer to the context in which the scripts are used, please refer to the appropriate subsection. 
 
 ## 1. Construct your own Mini-GNI
-
+<img align="left" width="250" height="175" src="./pics/Picture1.png">
 This directory provides the information necessary to create your own mini-GNI. It's contents are filled with all of the STL files necessary for 3-D printing, in addition to the coding for the arduino microcontroller within the mini-GNI and the arduino within the base controller (the controller used to connect with the mini-GNI while it is aloft). An assembly diagram is provided as well. 
 
 To download this directory from GitHub, run:
