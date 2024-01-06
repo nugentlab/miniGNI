@@ -1,4 +1,4 @@
-# miniGNI
+# miniGNI Version 1.0
 <img align="left" width="250" height="175" src="./pics/Fig1a_miniGNI.png">
 
 
