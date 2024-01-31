@@ -6,15 +6,15 @@
 
 The mini-GNI is a small, 3D instrumentation created by the [Nugent Research Group](http://alisonnugent.com/) used to sample sea salt aerosol (SSA) aloft using ground-based platforms. Modeled off the [National Center for Atmospheric Research GNI](https://www.eol.ucar.edu/instruments/giant-nuclei-impactor), the mini-GNI combines Arduino based microcontrollers and 3D printed technology in order to expose polycarbonate slides to free airstreams, allowing SSA to impact onto them. Then, these slides are analyzed in by NCAR's GNI microscope to calculate aerosol particle size distributions. Information on the methods behind the miniGNI can be found in this paper: 
 
-Taing et al., 2021 - https://journals.ametsoc.org/view/journals/atot/38/11/JTECH-D-20-0197.1.xml
+> A New Instrument for Determining the Coarse-Mode Sea Salt Aerosol Size Distribution - [Taing et al., 2021](https://journals.ametsoc.org/view/journals/atot/38/11/JTECH-D-20-0197.1.xml)
 
 while the microscope methods are explained in this paper: 
 
-Jensen et al., 2020 - https://journals.ametsoc.org/view/journals/atot/37/9/jtechD190109.xml?rskey=7VVZ45&result=6
+> The Giant Nucleus Impactor (GNI)—A System for the Impaction and Automated Optical Sizing of Giant Aerosol Particles with Emphasis on Sea Salt. Part I: Basic Instrument and Algorithms - [Jensen et al., 2020](https://journals.ametsoc.org/view/journals/atot/37/9/jtechD190109.xml?rskey=7VVZ45&result=6)
 
 Additional information about the observations gathered by the miniGNI V1.0 are in this corresponding paper: 
 
-Ackerman et al., 2023 - https://acp.copernicus.org/articles/23/13735/2023/
+> Mechanisms controlling giant sea salt aerosol size distributions along a tropical orographic coastline - [Ackerman et al., 2023](https://acp.copernicus.org/articles/23/13735/2023/)
 
 
 ### Mini-GNI Repository 
