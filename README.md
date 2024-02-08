@@ -1,4 +1,6 @@
 # miniGNI Version 1.0
+An updated version of the miniGNI can be found here --> (https://github.com/klackerman00/miniGNI_plus)
+
 <img align="left" width="250" height="175" src="./pics/Fig1a_miniGNI.png">
 
 
